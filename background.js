@@ -157,20 +157,28 @@ chrome.storage.local.get(['gameUrlPattern'], ({ gameUrlPattern }) => {
 function clickEzugi(tabId) { 
      const clickScript = `
         (function() {
-            console.log("点击开始...");
-            const nameElement = Array.from(
-                document.querySelectorAll('div.name-inner')
-            ).find(el => el.textContent && el.textContent.includes('Ezugi真人'));
-            
-            if (nameElement && nameElement.parentNode && nameElement.parentNode.parentNode) {
-                const targetElement = nameElement.parentNode.parentNode.firstElementChild;
-                targetElement.click();
-                console.log('成功点击Ezugi真人');
-                return true;
-            } else {
-                console.warn('未找到Ezugi真人元素');
-                return false;
+            function clickEzugiEle(){
+                 console.log("点击开始...");
+                const nameElement = Array.from(
+                    document.querySelectorAll('.name-inner')
+                ).find(el => el.textContent && el.textContent.includes('Ezugi真人'));
+                
+                if (nameElement && nameElement.parentNode && nameElement.parentNode.parentNode) {
+                    const targetElement = nameElement.parentNode.parentNode.firstElementChild;
+                    targetElement.click();
+                    const popupConfirm = document.querySelector('div.ui-dialog__main .ui-dialog__confirm');
+                    if (popupConfirm && popupConfirm.offsetParent !== null) {
+                        popupConfirm.click();
+                    } 
+                    console.log('成功点击Ezugi真人');
+                    return true;
+                } else {
+                    console.warn('未找到Ezugi真人元素');
+                    return false;
+                }
             }
+            clickEzugiEle();
+            setInterval(clickEzugiEle,30*60000);
         })()
     `;
 
