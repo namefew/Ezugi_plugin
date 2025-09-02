@@ -166,8 +166,8 @@ function clickEzugi(tabId) {
                 if (nameElement && nameElement.parentNode && nameElement.parentNode.parentNode) {
                     const targetElement = nameElement.parentNode.parentNode.firstElementChild;
                     targetElement.click();
-                    const popupConfirm = document.querySelector('div.ui-dialog__main .ui-dialog__confirm');
-                    if (popupConfirm && popupConfirm.offsetParent !== null) {
+                    const popupConfirm = document.querySelector('.ui-dialog__confirm');
+                    if (popupConfirm) {
                         popupConfirm.click();
                     } 
                     console.log('成功点击Ezugi真人');
